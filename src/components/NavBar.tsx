@@ -8,7 +8,6 @@ interface NavBarProps {
 export function NavBar({ onNavigate }: NavBarProps) {
   const navigation = [
     { name: 'About', href: '/crotonite-beta/about' },
-    { name: 'Technology', href: '/crotonite-beta/technology' },
     { name: 'Products', href: '#products' },
     { name: 'Contact', href: '/crotonite-beta/contact' },
   ];

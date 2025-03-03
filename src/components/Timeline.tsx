@@ -134,10 +134,13 @@ export function Timeline() {
               y: electronY,
               scale: electronScale,
               filter: useTransform(electronBrightness, brightness => `brightness(${brightness})`),
-              position: 'fixed',
+              position: 'absolute',
               left: '50%',
-              transform: 'translateX(-50%)',
-              zIndex: 20
+              transform: 'translate(-50%, -50%)',
+              zIndex: 20,
+              top: '0',
+              height: '100%',
+              transition: 'transform 0.3s ease'
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -9,6 +9,7 @@ import { CursorGradient } from './components/CursorGradient';
 import { LoadingScreen } from './components/LoadingScreen';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
+import { NotFound } from './components/NotFound';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -109,26 +110,42 @@ function App() {
     );
   }
 
+  // Default route for home page
+  if (path === '/' || path === '') {
+    return (
+      <>
+        {isLoading && (
+          <LoadingScreen 
+            isVisible={isLoading} 
+            onComplete={handleLoadingComplete}
+            duration={2000 + Math.random() * 3000}
+          />
+        )}
+        <CursorGradient 
+          colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
+          size={800}
+          opacity={0.15}
+          blur={120}
+        />
+        <Layout>
+          <Hero onNavigate={handleNavigation} />
+          <Benefits />
+          <Products />
+        </Layout>
+      </>
+    );
+  }
+
+  // NotFound route for undefined paths
   return (
     <>
-      {isLoading && (
-        <LoadingScreen 
-          isVisible={isLoading} 
-          onComplete={handleLoadingComplete}
-          duration={1000}
-        />
-      )}
       <CursorGradient 
         colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
         size={800}
         opacity={0.15}
         blur={120}
       />
-      <Layout>
-        <Hero onNavigate={handleNavigation} />
-        <Benefits />
-        <Products />
-      </Layout>
+      <NotFound />
     </>
   );
 }

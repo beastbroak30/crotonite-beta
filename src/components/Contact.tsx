@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Mail, Building, User, MessageSquare, DollarSign, Send, Banknote, Users, Code, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Building, User, MessageSquare, DollarSign, Send, Banknote, Users, Code, CheckCircle, AlertCircle, Package } from 'lucide-react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBTizH8OVW-gQRZinI010zOl2qxu7LHgqs",
+apiKey: "AIzaSyBTizH8OVW-gQRZinI010zOl2qxu7LHgqs",
   authDomain: "crotonite-form.firebaseapp.com",
   projectId: "crotonite-form",
   storageBucket: "crotonite-form.firebasestorage.app",
@@ -125,8 +125,7 @@ export function Contact() {
             Get in Touch
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Have questions about our project or want to contribute? We'd love to hear from you.
-            Please mail us at the email below (Form coming soon)
+            Have questions about our project or want to contribute? We'd love to hear from you. You can also mail us below
           </p>
         </div>
 
@@ -211,7 +210,7 @@ export function Contact() {
 
               <div>
                 <label className="block text-white mb-2">Contribution Type</label>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
                     onClick={() => handleContributionTypeChange('financial')}
@@ -249,6 +248,19 @@ export function Contact() {
                   >
                     <Code className={`h-6 w-6 mb-1 transition-colors ${formData.contributionType === 'technical' ? 'text-white' : 'text-gray-400'}`} />
                     <span className={`text-sm transition-colors ${formData.contributionType === 'technical' ? 'text-white font-medium' : 'text-gray-400'}`}>Technical</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleContributionTypeChange('product')}
+                    className={`flex flex-col items-center justify-center p-3 rounded-xl transition-all duration-300 ${
+                      formData.contributionType === 'product'
+                        ? 'bg-blue-600/50 border-2 border-blue-400/70 shadow-lg shadow-blue-500/20 scale-105'
+                        : 'bg-black/20 border border-white/10 hover:bg-black/30 hover:scale-105'
+                    }`}
+                  >
+                    <Package className={`h-6 w-6 mb-1 transition-colors ${formData.contributionType === 'product' ? 'text-white' : 'text-gray-400'}`} />
+                    <span className={`text-sm transition-colors ${formData.contributionType === 'product' ? 'text-white font-medium' : 'text-gray-400'}`}>For Product</span>
                   </button>
                 </div>
               </div>
@@ -313,6 +325,35 @@ export function Contact() {
                     or related fields to help advance our mission.
                   </p>
                 </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-gray-700/50 p-8 shadow-xl">
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
+                <DollarSign className="h-6 w-6 text-blue-400 mr-2" />
+                Fund Us Here
+              </h2>
+              <div className="grid grid-cols-2 gap-4">
+                <a
+                  href="https://www.indiegogo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center px-6 py-4 bg-[#EB1478]/10 hover:bg-[#EB1478]/20 border border-[#EB1478]/30 hover:border-[#EB1478]/50 rounded-xl transition-all duration-300 group hover:scale-105"
+                >
+                  <span className="text-[#EB1478] font-bold text-lg group-hover:scale-105 transition-transform">
+                    Indiegogo
+                  </span>
+                </a>
+                <a
+                  href="https://www.kickstarter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center px-6 py-4 bg-[#05CE78]/10 hover:bg-[#05CE78]/20 border border-[#05CE78]/30 hover:border-[#05CE78]/50 rounded-xl transition-all duration-300 group hover:scale-105"
+                >
+                  <span className="text-[#05CE78] font-bold text-lg group-hover:scale-105 transition-transform">
+                    Kickstarter
+                  </span>
+                </a>
               </div>
             </div>
 

@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@firebasegen/default-connector": "file:dataconnect-generated\\js\\default-connector",
     "@supabase/supabase-js": "^2.49.1",
     "firebase": "^11.4.0",
     "framer-motion": "^10.16.4",
