@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, Building, User, MessageSquare, DollarSign, Send, Banknote, Users, Code, CheckCircle, AlertCircle, Package } from 'lucide-react';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
@@ -32,7 +32,20 @@ export function Contact() {
     success: false,
     error: null as string | null
   });
-
+  
+  useEffect(() => {
+    // Get product from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+    
+    if (product) {
+      setFormData(prev => ({
+        ...prev,
+        message: `I want to enquire about the ${product}.`
+      }));
+    }
+  }, []);
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -80,23 +93,23 @@ export function Contact() {
       }, 5000);
     }
   };
-
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-
+  
   const handleContributionTypeChange = (type: string) => {
     setFormData({
       ...formData,
       contributionType: type,
     });
   };
-
+  
   return (
-<div className="relative hero-gradient overflow-hidden pt-20 min-h-screen">
+    <div className="relative hero-gradient overflow-hidden pt-20 min-h-screen">
       {/* Enhanced Background Animation */}
       <div className="absolute inset-0 z-0">
         <div className="relative h-full w-full">

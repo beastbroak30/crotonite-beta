@@ -98,82 +98,51 @@ export function Products() {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl drop-shadow-md">
-            Choose Your Accelerator
+          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
+            Our Products
           </h2>
-          <p className="mt-4 text-xl text-gray-300">
-            Professional-grade electron accelerators at revolutionary prices
+          <p className="mt-4 text-lg text-gray-400">
+            Choose the perfect electron accelerator for your needs
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 gap-8 md:grid-cols-3">
-          {products.map((product, index) => (
-            <div
-              key={product.name}
-              className={`product-card relative rounded-2xl border ${
-                product.featured
-                  ? 'featured border-blue-500/20 bg-gray-900/60'
-                  : 'border-gray-800/20 bg-gray-900/30'
-              } p-8 shadow-lg backdrop-blur-sm`}
-              style={{ 
-                transformStyle: 'preserve-3d',
-                transition: 'transform 0.3s ease',
-                animationDelay: `${index * 0.2}s`
-              }}
-            >
-              {product.featured && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <span className="bg-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full shadow-lg">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-              
-              <div className="card-content">
-                <div className="flex items-center justify-center">
-                  <div className={`p-4 rounded-full ${product.featured ? 'bg-blue-900/20' : 'bg-gray-800/30'} shadow-inner`}>
-                    <product.icon className={`h-12 w-12 ${
-                      product.featured ? 'text-blue-400' : 'text-gray-400'
-                    }`} />
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
+          {products.map((product) => {
+            const Icon = product.icon;
+            return (
+              <div
+                key={product.name}
+                className={`product-card relative p-6 bg-[#1a1a2e]/40 backdrop-blur-sm rounded-2xl border border-[#2a2a3e] transition-all duration-300 hover:border-indigo-500/50 ${product.featured ? 'ring-2 ring-indigo-500' : ''}`}
+              >
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mouse-x)_var(--mouse-y),rgba(99,102,241,0.15),transparent_50%)] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative">
+                  <div className="h-12 w-12 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-4">
+                    <Icon className="h-6 w-6 text-indigo-400" />
                   </div>
-                </div>
-                
-                <h3 className="mt-6 text-xl font-semibold text-center text-white">
-                  {product.name}
-                </h3>
-                
-                <div className="mt-4 text-center">
-                  <span className="text-2xl font-bold text-white">{product.price}</span>
-                </div>
-                
-                <p className="mt-4 text-sm text-gray-300 text-center">
-                  {product.description}
-                </p>
-                
-                <ul className="mt-8 space-y-3">
-                  {product.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-sm text-gray-300">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-2" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="mt-8">
-                  <a
-                    href="/contact"
-                    className={`block w-full text-center py-3 px-4 rounded-lg text-sm font-medium transition-all duration-300 ${
-                      product.featured
-                        ? 'bg-blue-500 text-white hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/20'
-                        : 'border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 hover:shadow-lg hover:shadow-gray-700/10'
-                    }`}
+                  <h3 className="text-xl font-semibold text-white mb-2">{product.name}</h3>
+                  <p className="text-gray-400 mb-4">{product.description}</p>
+                  <p className="text-2xl font-bold text-white mb-6">{product.price}</p>
+                  
+                  <ul className="space-y-3 mb-6">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-center text-gray-400">
+                        <span className="h-1.5 w-1.5 bg-indigo-500 rounded-full mr-2"></span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <button
+                    onClick={() => window.location.href = `/crotonite-beta/contact?product=${encodeURIComponent(product.name)}`}
+                    className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200"
                   >
                     Contact Sales
-                  </a>
+                  </button>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

@@ -15,14 +15,14 @@ export function NavBar({ onNavigate }: NavBarProps) {
   const handleSignUpClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onNavigate) {
       e.preventDefault();
-      onNavigate('/signup');
+      onNavigate('/crotonite-beta/signup');
     }
   };
 
   const handleLoginClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onNavigate) {
       e.preventDefault();
-      onNavigate('/login');
+      onNavigate('/crotonite-beta/login');
     }
   };
 

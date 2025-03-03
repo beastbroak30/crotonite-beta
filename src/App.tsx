@@ -14,29 +14,26 @@ import { NotFound } from './components/NotFound';
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [redirectTo, setRedirectTo] = useState<string | null>(null);
-
-  // Simple client-side routing
+  // Update baseUrl for GitHub Pages
   const baseUrl = '/crotonite-beta';
-  const path = window.location.pathname.startsWith(baseUrl) 
-    ? window.location.pathname.slice(baseUrl.length) 
-    : window.location.pathname;
-
+  const path = window.location.pathname;
+  const currentPath = path.startsWith(baseUrl) 
+    ? path.slice(baseUrl.length) 
+    : path;
   // Handle navigation with loading screen
   const handleNavigation = (to: string) => {
     setIsLoading(true);
     setRedirectTo(to);
   };
-
   // Handle loading completion
   const handleLoadingComplete = () => {
     if (redirectTo) {
-      window.location.pathname = baseUrl + redirectTo;
+      window.location.href = `${window.location.origin}${baseUrl}${redirectTo}`;
     }
     setIsLoading(false);
     setRedirectTo(null);
   };
-
-  if (path === '/signup') {
+  if (currentPath === '/signup' || currentPath === '/crotonite-beta/signup') {
     return (
       <>
         {isLoading && (
@@ -57,7 +54,7 @@ function App() {
     );
   }
 
-  if (path === '/login') {
+  if (currentPath === '/login' || currentPath === '/crotonite-beta/login') {
     return (
       <>
         {isLoading && (
@@ -78,7 +75,7 @@ function App() {
     );
   }
 
-  if (path === '/about') {
+  if (currentPath === '/about' || currentPath === '/crotonite-beta/about') {
     return (
       <>
         <CursorGradient 
@@ -94,7 +91,7 @@ function App() {
     );
   }
 
-  if (path === '/contact') {
+  if (currentPath === '/contact' || currentPath === '/crotonite-beta/contact') {
     return (
       <>
         <CursorGradient 
@@ -111,7 +108,7 @@ function App() {
   }
 
   // Default route for home page
-  if (path === '/' || path === '') {
+  if (currentPath === '/' || currentPath === '' || currentPath === '/crotonite-beta' || currentPath === '/crotonite-beta/') {
     return (
       <>
         {isLoading && (

@@ -207,7 +207,7 @@ export function NotFound() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          Our electron accelerator's vacuum chamber has sprung a leak! Electrons are escaping into the digital void. Catch  them disperse  using your mouse while we fix this anomaly.
+          Our electron accelerator's vacuum chamber has sprung a leak! Electrons are escaping into the digital void. Please Acclerate it manually  while we fix this anomaly.
         </motion.p>
         <motion.a
           href="/"
