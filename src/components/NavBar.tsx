@@ -7,10 +7,10 @@ interface NavBarProps {
 
 export function NavBar({ onNavigate }: NavBarProps) {
   const navigation = [
-    { name: 'About', href: '/about' },
-    { name: 'Technology', href: '/technology' },
+    { name: 'About', href: '/crotonite-beta/about' },
+    { name: 'Technology', href: '/crotonite-beta/technology' },
     { name: 'Products', href: '#products' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '/crotonite-beta/contact' },
   ];
 
   const handleSignUpClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -33,7 +33,7 @@ export function NavBar({ onNavigate }: NavBarProps) {
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <a href="/" className="flex items-center">
+              <a href="/crotonite-beta/" className="flex items-center">
                 <Zap className="h-6 w-6 text-blue-400" />
                 <span className="ml-2 text-lg font-medium text-white">Crotonite</span>
               </a>
@@ -50,14 +50,14 @@ export function NavBar({ onNavigate }: NavBarProps) {
                 </a>
               ))}
               <a
-                href="/login"
+                href="/crotonite-beta/login"
                 onClick={handleLoginClick}
                 className="bg-gray-800/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-700/80 transition-colors"
               >
                 Log In
               </a>
               <a
-                href="/signup"
+                href="/crotonite-beta/signup"
                 onClick={handleSignUpClick}
                 className="bg-blue-500/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600/80 transition-colors"
               >

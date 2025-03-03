@@ -17,6 +17,47 @@ export function Timeline() {
     offset: ["start end", "end start"]
   });
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      
+      const items = containerRef.current.querySelectorAll('.timeline-item');
+      const containerTop = containerRef.current.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      let newActiveIndex = 0;
+      items.forEach((item, index) => {
+        const itemTop = item.getBoundingClientRect().top - containerTop;
+        if (itemTop < windowHeight * 0.6) {
+          newActiveIndex = index;
+        }
+      });
+      
+      setActiveIndex(newActiveIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
   const timelineItems: TimelineItem[] = [
     {
       year: "2024",
@@ -54,11 +95,10 @@ export function Timeline() {
       description: "To Develop and grow  Crotonite"
     },
   ];
-
   const electronY = useTransform(
     scrollYProgress,
     [0, 1],
-    ["5%", "95%"]
+    ["0%", "100%"]
   );
 
   const electronScale = useTransform(
@@ -72,45 +112,6 @@ export function Timeline() {
     [0, 0.5, 1],
     [0.5, 1, 0.5]
   );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      
-      const { top, height } = containerRef.current.getBoundingClientRect();
-      const scrollPosition = window.innerHeight - top;
-      const scrollPercentage = Math.min(Math.max(scrollPosition / (height + window.innerHeight), 0), 1);
-      
-      const newActiveIndex = Math.min(
-        Math.floor(scrollPercentage * timelineItems.length),
-        timelineItems.length - 1
-      );
-      
-      setActiveIndex(newActiveIndex);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [timelineItems.length]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div className="perspective-container" ref={containerRef}>
@@ -132,12 +133,20 @@ export function Timeline() {
             style={{ 
               y: electronY,
               scale: electronScale,
-              filter: useTransform(electronBrightness, brightness => `brightness(${brightness})`)
+              filter: useTransform(electronBrightness, brightness => `brightness(${brightness})`),
+              position: 'fixed',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 20
             }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="w-5 h-5 bg-blue-400 rounded-full shadow-lg shadow-blue-500/50 relative">
               <div className="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-75"></div>
               <div className="absolute -inset-2 bg-blue-400/30 rounded-full animate-pulse"></div>
+              <div className="absolute -inset-4 bg-blue-400/20 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
             </div>
           </motion.div>
 

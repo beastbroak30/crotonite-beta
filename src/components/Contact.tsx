@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { Mail, Building, User, MessageSquare, DollarSign, Send, Banknote, Users, Code, CheckCircle, AlertCircle } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBTizH8OVW-gQRZinI010zOl2qxu7LHgqs",
+  authDomain: "crotonite-form.firebaseapp.com",
+  projectId: "crotonite-form",
+  storageBucket: "crotonite-form.firebasestorage.app",
+  messagingSenderId: "914679188035",
+  appId: "1:914679188035:web:d026e859a8088c071e62f6",
+  measurementId: "G-X83N82DD2J"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 export function Contact() {
-  // Initialize Supabase client
-  const supabaseUrl = 'https://osazdtzbzgoyiultgnuk.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zYXpkdHpiemdveWl1bHRnbnVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA4MTMxNDUsImV4cCI6MjA1NjM4OTE0NX0.k1DNa3WwRNSVsqp3_Rj7MErjuq6H-bZUKsbiwWIp85g';
-  const supabase = createClient(supabaseUrl, supabaseKey);
-  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,23 +39,17 @@ export function Contact() {
     try {
       setSubmitStatus({ loading: true, success: false, error: null });
       
-      // Insert form data into Supabase table
-      const { data, error } = await supabase
-        .from('contact_submissions')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            organization: formData.organization || null,
-            message: formData.message,
-            contribution_type: formData.contributionType,
-            submitted_at: new Date().toISOString()
-          }
-        ]);
+      // Add form data to Firestore
+      const docRef = await addDoc(collection(db, 'contact_submissions'), {
+        name: formData.name,
+        email: formData.email,
+        organization: formData.organization || null,
+        message: formData.message,
+        contribution_type: formData.contributionType,
+        submitted_at: new Date().toISOString()
+      });
       
-      if (error) throw error;
-      
-      console.log('Form submitted successfully:', data);
+      console.log('Form submitted successfully with ID:', docRef.id);
       setSubmitStatus({ loading: false, success: true, error: null });
       
       // Reset form after successful submission

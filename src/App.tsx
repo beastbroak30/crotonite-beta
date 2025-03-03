@@ -15,7 +15,10 @@ function App() {
   const [redirectTo, setRedirectTo] = useState<string | null>(null);
 
   // Simple client-side routing
-  const path = window.location.pathname;
+  const baseUrl = '/crotonite-beta';
+  const path = window.location.pathname.startsWith(baseUrl) 
+    ? window.location.pathname.slice(baseUrl.length) 
+    : window.location.pathname;
 
   // Handle navigation with loading screen
   const handleNavigation = (to: string) => {
@@ -26,7 +29,7 @@ function App() {
   // Handle loading completion
   const handleLoadingComplete = () => {
     if (redirectTo) {
-      window.location.pathname = redirectTo;
+      window.location.pathname = baseUrl + redirectTo;
     }
     setIsLoading(false);
     setRedirectTo(null);

@@ -2,6 +2,8 @@ import React from 'react';
 import { Zap, Mail, Phone, MapPin } from 'lucide-react';
 
 export function Footer() {
+  const baseUrl = '/crotonite-beta';
+
   return (
     <footer className="bg-[#0a0a0f] border-t border-gray-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -37,10 +39,10 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">Links</h3>
             <ul className="mt-4 space-y-2">
-              <li><a href="/about" className="text-sm text-gray-400 hover:text-white">About Us</a></li>
-              <li><a href="/technology" className="text-sm text-gray-400 hover:text-white">Technology</a></li>
-              <li><a href="/products" className="text-sm text-gray-400 hover:text-white">Products</a></li>
-              <li><a href="/contact" className="text-sm text-gray-400 hover:text-white">Support</a></li>
+              <li><a href={`${baseUrl}/about`} className="text-sm text-gray-400 hover:text-white">About Us</a></li>
+              <li><a href={`${baseUrl}/technology`} className="text-sm text-gray-400 hover:text-white">Technology</a></li>
+              <li><a href={`${baseUrl}/products`} className="text-sm text-gray-400 hover:text-white">Products</a></li>
+              <li><a href={`${baseUrl}/contact`} className="text-sm text-gray-400 hover:text-white">Support</a></li>
             </ul>
           </div>
         </div>
