@@ -5,11 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "serve": "vite preview --port $PORT",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "start": "vite preview --port $PORT"
+    "serve": "vite preview --port 3000 --host",
+    "start": "node server.js"
   },
   "dependencies": {
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",

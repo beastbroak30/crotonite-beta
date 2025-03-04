@@ -1,10 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/", // Ensure it works correctly on Render
+  base: "/", // No need for a subpath on Render
   build: {
     sourcemap: false,
     rollupOptions: {
@@ -16,11 +15,13 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000, // Local dev server port
+    port: process.env.PORT ? parseInt(process.env.PORT) : 3000, // Use Render's PORT
     strictPort: true,
+    host: '0.0.0.0', // Allow external access (important for Render)
   },
   preview: {
-    port: 3000, // Ensure preview works on Render
+    port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
     strictPort: true,
+    host: '0.0.0.0', // Allow Render to access the app externally
   },
 });
