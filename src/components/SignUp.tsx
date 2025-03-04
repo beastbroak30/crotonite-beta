@@ -11,6 +11,7 @@ interface SignUpProps {
 export function SignUp({ onNavigate }: SignUpProps) {
   const [formData, setFormData] = useState({
     name: '',
+    username: '',
     organization: '',
     email: '',
     password: '',
@@ -84,6 +85,22 @@ export function SignUp({ onNavigate }: SignUpProps) {
                       onChange={handleChange}
                       className="w-full bg-black/20 backdrop-blur-xl border border-white/10 rounded-xl px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/20"
                       placeholder="Full Name"
+                    />
+                    <User className="absolute right-4 top-3.5 h-5 w-5 text-gray-400" />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="relative">
+                    <input
+                      id="username"
+                      name="username"
+                      type="text"
+                      required
+                      value={formData.username}
+                      onChange={handleChange}
+                      className="w-full bg-black/20 backdrop-blur-xl border border-white/10 rounded-xl px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/20"
+                      placeholder="Username"
                     />
                     <User className="absolute right-4 top-3.5 h-5 w-5 text-gray-400" />
                   </div>

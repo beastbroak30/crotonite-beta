@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Lock, ArrowRight, ArrowLeft, Github } from 'lucide-react';
+import { Mail, Lock, ArrowRight, ArrowLeft, Github, User } from 'lucide-react';
 import { NavBar } from './NavBar';
 import { CursorGradient } from './CursorGradient';
 import { LoadingScreen } from './LoadingScreen';
@@ -10,7 +10,7 @@ interface LoginProps {
 
 export function Login({ onNavigate }: LoginProps) {
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
 
@@ -74,16 +74,16 @@ export function Login({ onNavigate }: LoginProps) {
                 <div>
                   <div className="relative">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
+                      id="username"
+                      name="username"
+                      type="text"
                       required
-                      value={formData.email}
+                      value={formData.username}
                       onChange={handleChange}
                       className="w-full bg-black/20 backdrop-blur-xl border border-white/10 rounded-xl px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/20"
-                      placeholder="Email address"
+                      placeholder="Username"
                     />
-                    <Mail className="absolute right-4 top-3.5 h-5 w-5 text-gray-400" />
+                    <User className="absolute right-4 top-3.5 h-5 w-5 text-gray-400" />
                   </div>
                 </div>
 
