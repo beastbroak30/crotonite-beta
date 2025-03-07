@@ -3,9 +3,9 @@ import { Zap, Gauge, Shield } from 'lucide-react';
 
 const products = [
   {
-    name: 'EA-100',
+    name: 'EA-10',
     description: 'Entry-level electron accelerator perfect for educational institutions and small research labs.',
-    price: '$49,999',
+    price: '$49,999 - $60,000',
     features: [
       'Energy range: 100 keV - 1 MeV',
       'Compact 2m x 1m footprint',
@@ -15,9 +15,9 @@ const products = [
     icon: Zap
   },
   {
-    name: 'EA-500',
+    name: 'EA-NEO',
     description: 'Professional-grade accelerator with advanced controls and higher energy range.',
-    price: '$99,999',
+    price: '$99,999 - $120,000',
     features: [
       'Energy range: 500 keV - 5 MeV',
       'Precision beam steering',
@@ -28,9 +28,9 @@ const products = [
     featured: true
   },
   {
-    name: 'EA-1000',
+    name: 'EA-10M',
     description: 'Research-grade system for advanced applications and specialized research.',
-    price: '$199,999',
+    price: '$199,999 - $250,000',
     features: [
       'Energy range: 1 MeV - 10 MeV',
       'Full spectrum diagnostics',
