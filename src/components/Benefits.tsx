@@ -40,7 +40,7 @@ export function Benefits() {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl drop-shadow-md">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] via-[#6366f1] to-[#8b5cf6] sm:text-4xl drop-shadow-md">
             Democratizing Particle Physics
           </h2>
           <p className="mt-4 text-xl text-gray-300">

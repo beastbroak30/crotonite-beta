@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-sm">
                 <Mail className="h-4 w-4 mr-2 text-gray-400" />
-                <a href="mailto:sales@crotonite.com" className="text-gray-400 hover:text-white">akantarip30@gmail.com</a>
+                <a href="mailto:akantarip30@gmail.com" className="text-gray-400 hover:text-white">Mail Us</a>
               </li>
               <li className="flex items-center text-sm">
                 <Phone className="h-4 w-4 mr-2 text-gray-400" />
@@ -41,7 +41,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2">
               <li><a href={`${baseUrl}/about`} className="text-sm text-gray-400 hover:text-white">About Us</a></li>
               <li><a href={`${baseUrl}/technology`} className="text-sm text-gray-400 hover:text-white">Technology</a></li>
-              <li><a href={`${baseUrl}/products`} className="text-sm text-gray-400 hover:text-white">Products</a></li>
+              <li><a href={`${baseUrl}/productpage`} className="text-sm text-gray-400 hover:text-white">Products</a></li>
               <li><a href={`${baseUrl}/contact`} className="text-sm text-gray-400 hover:text-white">Support</a></li>
             </ul>
           </div>

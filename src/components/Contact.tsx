@@ -34,14 +34,23 @@ export function Contact() {
   });
   
   useEffect(() => {
-    // Get product from URL parameters
+    // Get product and type from URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const product = urlParams.get('product');
+    const type = urlParams.get('type');
     
     if (product) {
       setFormData(prev => ({
         ...prev,
         message: `I want to enquire about the ${product}.`
+      }));
+    }
+    
+    // Set contribution type if specified in URL
+    if (type && ['financial', 'research', 'technical', 'product'].includes(type)) {
+      setFormData(prev => ({
+        ...prev,
+        contributionType: type
       }));
     }
   }, []);

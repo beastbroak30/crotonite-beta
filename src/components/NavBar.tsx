@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Zap } from 'lucide-react';
+import { NavbarContext } from './NavbarProvider';
 
 interface NavBarProps {
   onNavigate?: (to: string) => void;
 }
 
 export function NavBar({ onNavigate }: NavBarProps) {
+  // Get navbar visibility state from context
+  const navbarContext = useContext(NavbarContext);
+  const isVisible = navbarContext ? navbarContext.isNavbarVisible : true;
+  
   const navigation = [
     { name: 'About', href: '/crotonite-beta/about' },
-    { name: 'Products', href: '#products' },
+    { name: 'Products', href: 'productpage' },
     { name: 'Contact', href: '/crotonite-beta/contact' },
   ];
 
@@ -26,9 +31,19 @@ export function NavBar({ onNavigate }: NavBarProps) {
     }
   };
 
+  // Apply conditional styles based on visibility state
+  const navbarStyles = isVisible
+    ? "bg-gray-900/60 backdrop-blur-lg"
+    : "bg-gray-900/30 backdrop-blur-sm"; // More translucent when not visible
+
+  // If navbar should be hidden, don't render it at all
+  if (!isVisible) {
+    return null;
+  }
+
   return (
-    <div className="fixed w-full top-0 z-50 px-4 sm:px-6 lg:px-8 pt-4">
-      <nav className="bg-gray-900/60 backdrop-blur-lg rounded-2xl border border-gray-800/50">
+    <div className="fixed w-full top-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 transition-all duration-300">
+      <nav className={`${navbarStyles} rounded-2xl border border-gray-800/50 transition-all duration-300`}>
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
