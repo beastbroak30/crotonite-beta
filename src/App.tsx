@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Layout } from './components/Layout';
 import { Hero } from './components/Hero';
 import { Benefits } from './components/Benefits';
@@ -38,6 +40,8 @@ function App() {
   if (currentPath === '/signup' || currentPath === '/crotonite-beta/signup') {
     return (
       <>
+        <Analytics />
+        <SpeedInsights />
         {isLoading && (
           <LoadingScreen 
             isVisible={isLoading} 
@@ -59,6 +63,8 @@ function App() {
   if (currentPath === '/login' || currentPath === '/crotonite-beta/login') {
     return (
       <>
+        <Analytics />
+        <SpeedInsights />
         {isLoading && (
           <LoadingScreen 
             isVisible={isLoading} 
@@ -81,6 +87,8 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Analytics />
+          <SpeedInsights />
           <CursorGradient 
             colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
             size={800}
@@ -99,6 +107,8 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Analytics />
+          <SpeedInsights />
           <CursorGradient 
             colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
             size={800}
@@ -117,6 +127,8 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Analytics />
+          <SpeedInsights />
           <CursorGradient 
             colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
             size={800}
@@ -136,6 +148,8 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Analytics />
+          <SpeedInsights />
           {isLoading && (
             <LoadingScreen 
               isVisible={isLoading} 
@@ -163,6 +177,8 @@ function App() {
   return (
     <NavbarProvider>
       <>
+        <Analytics />
+        <SpeedInsights />
         <CursorGradient 
           colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
           size={800}
