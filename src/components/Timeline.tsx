@@ -82,7 +82,7 @@ export function Timeline() {
     {
       year: "2025 Nov",
       title: "Pre-order and launch",
-      description: "The first accelerator consumer level is now on the market."
+      description: "The first consumer level accelerator is now on the market."
     },
     {
       year: "2026",
@@ -92,7 +92,7 @@ export function Timeline() {
     {
       year: "2026 - 2027",
       title: "Phase 2 Development",
-      description: "To Develop and grow  Crotonite"
+      description: "To Develop acclerators with cryogenic system and more beam power"
     },
   ];
   const electronY = useTransform(

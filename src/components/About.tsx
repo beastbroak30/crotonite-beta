@@ -11,8 +11,8 @@ export function About() {
       icon: Atom
     },
     {
-      name: 'Arjav Singhai',
-      role: 'Reseaarcher ',
+      name: 'Someone',
+      role: 'Researcher & co-founder',
       description: 'My friend who has great theory and passion to make it happen.',
       icon: Globe
     }
