@@ -339,7 +339,7 @@ const ProductPage: React.FC = () => {
     transition: 'all 0.3s ease',
     boxShadow: '0 4px 15px rgba(73, 186, 255, 0.2)',
     marginTop: '20px',
-    '&:hover': {
+    ':hover': {
       transform: 'translateY(-2px)',
       boxShadow: '0 6px 20px rgba(73, 186, 255, 0.3)'
     }
@@ -378,6 +378,18 @@ const ProductPage: React.FC = () => {
             <button style={viewDetailsButtonStyle}>View Details</button>
           </motion.div>
         ))}
+      </div>
+
+      <div style={modelSectionStyle}>
+        <h2 style={{...headerTitleStyle, fontSize: '36px', marginBottom: '20px'}}>Interactive 3D Model</h2>
+        <p style={{...headerDescriptionStyle, marginBottom: '30px'}}>Explore our EA-10 electron accelerator in 3D. Rotate and zoom to examine the details of our cutting-edge technology.</p>
+        <ModelViewer 
+          modelPath="/EA-10v1.gltf" 
+          height="500px" 
+          autoRotate={true} 
+          rotationSpeed={0.005} 
+          backgroundColor="rgba(17, 24, 39, 0.2)"
+        />
       </div>
 
       <AnimatePresence>
@@ -619,4 +631,15 @@ const listStyle: React.CSSProperties = {
 const handleContact = (productName: string) => {
   // Redirect to contact page with product name and set contribution type to 'product'
   window.location.href = `/contact?product=${encodeURIComponent(productName)}&type=product`;
+};
+
+import ModelViewer from './ModelViewer';
+
+const modelSectionStyle: React.CSSProperties = {
+  maxWidth: '1200px',
+  margin: '60px auto 40px',
+  padding: '20px',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center'
 };
