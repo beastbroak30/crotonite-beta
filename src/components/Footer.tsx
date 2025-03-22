@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2">
               <li className="flex items-center text-sm">
                 <Mail className="h-4 w-4 mr-2 text-gray-400" />
-                <a href="mailto:akantarip30@gmail.com" className="text-gray-400 hover:text-white">Mail Us</a>
+                <a href="mailto:crotonitebeta@gmail.com" className="text-gray-400 hover:text-white">Mail Us</a>
               </li>
               <li className="flex items-center text-sm">
                 <Phone className="h-4 w-4 mr-2 text-gray-400" />
