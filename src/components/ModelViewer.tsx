@@ -91,8 +91,14 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
     controls.dampingFactor = 0.05;
     controls.autoRotate = autoRotate;
     controls.autoRotateSpeed = 2.0;
-    controls.enableZoom = true; // Enable zoom to allow users to zoom in and out
-    controls.enablePan = false; // Disable panning to keep fixed position
+    controls.enableZoom = true;
+    controls.enablePan = false;
+    controls.minDistance = 10;
+    controls.maxDistance = 50;
+    controls.touches = {
+      ONE: THREE.TOUCH.ROTATE,
+      TWO: THREE.TOUCH.DOLLY_PAN
+    };
     controls.update();
     
     // Load model
@@ -192,6 +198,8 @@ const ModelViewer: React.FC<ModelViewerProps> = ({
         boxShadow: '0 12px 40px rgba(0, 0, 0, 0.5)',
         background: 'linear-gradient(to bottom, #000000, #101820)',
         border: '1px solid rgba(30, 30, 30, 0.5)',
+        touchAction: 'none',
+        WebkitTapHighlightColor: 'transparent'
       }}
     />
   );

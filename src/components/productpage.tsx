@@ -225,28 +225,30 @@ const ProductPage: React.FC = () => {
 
   const headerStyle: React.CSSProperties = {
     textAlign: 'center',
-    marginBottom: '60px',
+    marginBottom: '40px',
     position: 'relative',
-    padding: '60px 0 20px 0'
+    padding: '40px 0 20px 0'
   };
 
   const headerTitleStyle: React.CSSProperties = {
-    fontSize: '48px',   
+    fontSize: '32px',   
     fontWeight: '700',
     color: '#ffffff',
     textShadow: '0 0 20px rgba(255, 255, 255, 0.4)',
     position: 'relative',
-    zIndex: 2
+    zIndex: 2,
+    padding: '0 15px'
   };
 
   const headerDescriptionStyle: React.CSSProperties = {
-    fontSize: '18px',
+    fontSize: '16px',
     color: '#c0caf5',
     maxWidth: '800px',
-    margin: '20px auto 0',
-    lineHeight: '1.6',
+    margin: '15px auto 0',
+    lineHeight: '1.5',
     position: 'relative',
-    zIndex: 2
+    zIndex: 2,
+    padding: '0 20px'
   };
 
   const headerLineStyle: React.CSSProperties = {
@@ -485,11 +487,13 @@ export default ProductPage;
 
 const productsGridStyle: React.CSSProperties = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-  gap: '30px',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  gap: '20px',
+  padding: '15px',
+  position: 'relative',
+  zIndex: 2,
   maxWidth: '1200px',
-  margin: '0 auto',
-  padding: '20px'
+  margin: '0 auto'
 };
 
 const productCardStyle: React.CSSProperties = {
@@ -497,13 +501,17 @@ const productCardStyle: React.CSSProperties = {
   backdropFilter: 'blur(12px)',
   borderRadius: '16px',
   border: '1px solid rgba(73, 186, 255, 0.3)',
-  padding: '30px',
+  padding: '20px',
   display: 'flex',
   flexDirection: 'column',
   height: '100%',
   minHeight: '400px',
   cursor: 'pointer',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+  position: 'relative',
+  zIndex: 2,
+  touchAction: 'manipulation',
+  WebkitTapHighlightColor: 'transparent',
   boxShadow: '0 8px 30px rgba(59, 130, 246, 0.15)'
 };
 
@@ -563,45 +571,51 @@ const productDetailsOverlayStyle: React.CSSProperties = {
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: 'rgba(10, 10, 15, 0.65)', // More translucent background
-  backdropFilter: 'blur(10px)', // Increased blur for better visibility
+  backgroundColor: 'rgba(10, 10, 15, 0.65)',
+  backdropFilter: 'blur(10px)',
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'center',
-  zIndex: 100
+  zIndex: 1000,
+  padding: '10px',
+  overflowY: 'auto',
+  WebkitOverflowScrolling: 'touch'
 };
 
 const productDetailsCardStyle: React.CSSProperties = {
-  background: 'rgba(17, 24, 39, 0.4)', // More translucent background
-  backdropFilter: 'blur(20px)', // Increased blur effect for glass-like appearance
+  background: 'rgba(17, 24, 39, 0.95)',
+  backdropFilter: 'blur(20px)',
   borderRadius: '16px',
   border: '1px solid rgba(73, 186, 255, 0.3)',
-  padding: '40px',
+  padding: '20px',
   maxWidth: '1100px',
   width: '95%',
-  maxHeight: '90vh',
-  overflow: 'auto',
   position: 'relative',
-  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.2), 0 0 30px rgba(73, 186, 255, 0.15)'
+  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5)',
+  margin: '60px auto',
+  WebkitTapHighlightColor: 'transparent'
 };
 
 const closeButtonStyle: React.CSSProperties = {
-  position: 'absolute',
-  top: '15px',
-  right: '15px',
-  background: 'rgba(59, 130, 246, 0.2)',
-  color: '#fff',
-  border: 'none',
+  position: 'fixed',
+  top: '10px',
+  right: '10px',
+  background: 'rgba(17, 24, 39, 0.8)',
+  border: '1px solid rgba(73, 186, 255, 0.3)',
+  color: '#ffffff',
+  fontSize: '24px',
+  cursor: 'pointer',
+  padding: '8px',
   borderRadius: '50%',
-  width: '36px',
-  height: '36px',
+  width: '40px',
+  height: '40px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  fontSize: '24px',
-  cursor: 'pointer',
   transition: 'all 0.3s ease',
-  zIndex: 10
+  backdropFilter: 'blur(4px)',
+  zIndex: 1001,
+  WebkitTapHighlightColor: 'transparent'
 };
 
 const flexContainerStyle: React.CSSProperties = {

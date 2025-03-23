@@ -19,9 +19,33 @@ export function About() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0f] overflow-hidden py-24">
+    <div className="relative min-h-screen bg-[#0a0a0f] overflow-hidden py-24 space-y-12">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0f172a] to-[#0a0a0f] opacity-90"></div>
+
+      {/* Mobile Logo Section */}
+      <div className="md:hidden flex items-center justify-center pt-2 pb-4 px-6">
+        <div className="flex items-center space-x-3">
+          <div className="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 transform hover:scale-105 transition-all duration-300">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-8 text-white"
+            >
+              <path
+                d="M13 3L4 14H12L11 21L20 10H12L13 3Z"
+                fill="currentColor"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <span className="text-2xl font-bold text-white drop-shadow-lg">Crotonite</span>
+        </div>
+      </div>
 
       {/* 3D Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -31,7 +55,7 @@ export function About() {
              style={{ bottom: '20%', left: '10%', transform: 'rotate(-10deg)', animationDelay: '1.1s' }} />
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-white sm:text-5xl drop-shadow-lg mb-6">
@@ -97,14 +121,14 @@ export function About() {
       </div>
 
       {/* Floating Funding Box */}
-      <div className="fixed bottom-8 right-8 bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-gray-700/50 p-6 transform hover:scale-105 transition-all duration-300 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/10 z-50">
-        <h3 className="text-lg font-semibold text-white mb-3">Support Us On</h3>
-        <div className="space-y-3">
+      <div className="fixed md:bottom-8 bottom-20 right-8 bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-gray-700/50 md:p-6 p-4 transform hover:scale-105 transition-all duration-300 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/10 z-50">
+        <h3 className="text-lg font-semibold text-white mb-2 md:mb-3">Support Us On</h3>
+        <div className="space-y-2 md:space-y-3">
           <a
             href="https://www.kickstarter.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full text-center bg-[#05ce78] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#05b76c] transition-colors"
+            className="block w-full text-center bg-[#05ce78] text-white px-4 py-1.5 md:py-2 rounded-lg font-medium hover:bg-[#05b76c] transition-colors text-sm md:text-base"
           >
             Kickstarter
           </a>
@@ -112,7 +136,7 @@ export function About() {
             href="https://www.indiegogo.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full text-center bg-[#eb1478] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#d31069] transition-colors"
+            className="block w-full text-center bg-[#eb1478] text-white px-4 py-1.5 md:py-2 rounded-lg font-medium hover:bg-[#d31069] transition-colors text-sm md:text-base"
           >
             Indiegogo
           </a>

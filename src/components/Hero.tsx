@@ -14,7 +14,30 @@ export function Hero({ onNavigate }: HeroProps) {
   };
 
   return (
-    <div className="relative hero-gradient overflow-hidden pt-20">
+    <div className="relative hero-gradient overflow-hidden pt-10">
+      {/* Mobile Logo Section */}
+      <div className="md:hidden flex items-center justify-center pt-2 pb-4 px-6">
+        <div className="flex items-center space-x-3">
+          <div className="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 transform hover:scale-105 transition-all duration-300">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-8 h-8 text-white"
+            >
+              <path
+                d="M13 3L4 14H12L11 21L20 10H12L13 3Z"
+                fill="currentColor"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+          <span className="text-2xl font-bold text-white">Crotonite</span>
+        </div>
+      </div>
       {/* Enhanced Background Animation */}
       <div className="absolute inset-0 z-0">
         <div className="relative h-full w-full">
@@ -114,21 +137,21 @@ export function Hero({ onNavigate }: HeroProps) {
              style={{ top: '70%', left: '25%', transform: 'rotate(30deg)', animationDelay: '1s' }} />
       </div>
 
-      <div className="relative max-w-4xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="relative max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
           <div className="text-center md:text-left md:flex-1">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight drop-shadow-lg">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight drop-shadow-lg mb-4">
               <span className="block transform transition-transform hover:scale-105 duration-500">Support the Future</span>
-              <span className="block text-blue-400 mt-2 transform transition-transform hover:scale-105 duration-500">of Particle Physics</span>
-              <span className="block text-gray-300 text-2xl sm:text-3xl md:text-4xl mt-3 font-medium transform transition-transform hover:scale-105 duration-500">Electron Accelerators For Everyone</span>
+              <span className="block text-blue-400 mt-1 transform transition-transform hover:scale-105 duration-500">of Particle Physics</span>
+              <span className="block text-gray-300 text-2xl sm:text-3xl md:text-4xl mt-2 font-medium transform transition-transform hover:scale-105 duration-500">Electron Accelerators For Everyone</span>
             </h1>
             
-            <p className="mt-8 text-xl text-gray-300 max-w-2xl">
+            <p className="mt-4 text-xl text-gray-300 max-w-2xl">
               Join our crowdfunding campaign to revolutionize particle physics.
               Help us reach our goal of $250,000!
             </p>
             
-            <div className="mt-10 flex justify-center md:justify-start">
+            <div className="mt-6 flex justify-center md:justify-start">
               <a
                 href="/signup"
                 onClick={handleGetStartedClick}
@@ -140,30 +163,30 @@ export function Hero({ onNavigate }: HeroProps) {
             </div>
           </div>
 
-          <div className="md:flex-1 w-full md:w-auto space-y-4">
+          <div className="md:flex-1 w-full md:w-auto space-y-4 mt-8 sm:mt-0">
             {/* Progress Bar */}
-            <div className="bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-gray-700/50 p-6 floating-element transform hover:scale-105 transition-all duration-300 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/10" style={{ animationDelay: '0.7s' }}>
-              <div className="flex justify-between text-sm text-gray-300 mb-2">
+            <div className="bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-gray-700/50 p-4 sm:p-6 floating-element transform hover:scale-105 transition-all duration-300 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/10" style={{ animationDelay: '0.7s' }}>
+              <div className="flex justify-between text-xs sm:text-sm text-gray-300 mb-2">
                 <span>$0 raised</span>
                 <span>$250,000 goal</span>
               </div>
-              <div className="h-4 bg-gray-700/50 rounded-full overflow-hidden">
+              <div className="h-3 sm:h-4 bg-gray-700/50 rounded-full overflow-hidden">
                 <div className="h-full bg-blue-500 rounded-full" style={{ width: '0%' }}></div>
               </div>
-              <p className="text-gray-400 text-sm mt-2">Be one of the first backers to support this project</p>
+              <p className="text-gray-400 text-xs sm:text-sm mt-2">Be one of the first backers to support this project</p>
             </div>
 
             {/* Crowdfunding Section */}
-            <div className="bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-gray-700/50 p-8 transform hover:scale-105 transition-all duration-300 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/10">
-              <h2 className="text-3xl font-bold text-white mb-2">Crowd Fund Us</h2>
-              <p className="text-xl text-gray-300 mb-8">Join the Revolution in Particle Physics</p>
+            <div className="bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-gray-700/50 p-4 sm:p-8 transform hover:scale-105 transition-all duration-300 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/10">
+              <h2 className="text-xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Crowd Fund Us</h2>
+              <p className="text-base sm:text-xl text-gray-300 mb-4 sm:mb-8">Join the Revolution in Particle Physics</p>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <a
                   href="https://www.indiegogo.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center px-6 py-4 border border-gray-700 rounded-xl bg-[#eb1478]/90 backdrop-blur-xl text-white hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300 font-semibold"
+                  className="flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 border border-gray-700 rounded-xl bg-[#eb1478]/90 backdrop-blur-xl text-white hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300 font-semibold text-sm sm:text-base"
                 >
                   Indiegogo
                 </a>
@@ -172,13 +195,13 @@ export function Hero({ onNavigate }: HeroProps) {
                   href="https://www.kickstarter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center px-6 py-4 border border-gray-700 rounded-xl bg-[#05ce78]/90 backdrop-blur-xl text-white hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300 font-semibold"
+                  className="flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 border border-gray-700 rounded-xl bg-[#05ce78]/90 backdrop-blur-xl text-white hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300 font-semibold text-sm sm:text-base"
                 >
                   Kickstarter
                 </a>
               </div>
 
-              <p className="text-gray-400 text-sm mt-6 text-center">
+              <p className="text-gray-400 text-xs sm:text-sm mt-4 sm:mt-6 text-center">
                 Help us revolutionize particle physics education and research.
                 Every contribution brings us closer to our goal!
               </p>

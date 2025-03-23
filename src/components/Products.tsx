@@ -130,13 +130,13 @@ export function Products() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-10 md:grid-cols-3 lg:gap-12">
+        <div className="mt-16 grid gap-6 grid-cols-1 sm:gap-8 md:grid-cols-3 lg:gap-12">
           {products.map((product) => {
             const Icon = product.icon;
             return (
               <div
                 key={product.name}
-                className={`product-card relative p-7 md:p-8 bg-[#1a1a2e]/40 backdrop-blur-sm rounded-2xl border border-[#2a2a3e] transition-all duration-300 hover:border-indigo-500/50 ${product.featured ? 'ring-2 ring-indigo-500' : ''}`}
+                className={`product-card relative p-5 sm:p-6 md:p-8 bg-[#1a1a2e]/40 backdrop-blur-sm rounded-2xl border border-[#2a2a3e] transition-all duration-300 hover:border-indigo-500/50 ${product.featured ? 'ring-2 ring-indigo-500' : ''}`}
               >
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--mouse-x)_var(--mouse-y),rgba(99,102,241,0.15),transparent_50%)] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
@@ -144,11 +144,11 @@ export function Products() {
                   <div className="h-12 w-12 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-4">
                     <Icon className="h-6 w-6 text-indigo-400" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">{product.name}</h3>
-                  <p className="text-gray-400 mb-5 min-h-[60px]">{product.description}</p>
-                  <p className="text-2xl font-bold text-white mb-7">{product.price}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">{product.name}</h3>
+                  <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-5 min-h-[60px]">{product.description}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-7">{product.price}</p>
                   
-                  <ul className="space-y-3 mb-8 min-h-[120px]">
+                  <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8 min-h-[120px]">
                     {product.features.map((feature, index) => (
                       <li key={index} className="flex items-center text-gray-400">
                         <span className="h-1.5 w-1.5 bg-indigo-500 rounded-full mr-2"></span>
@@ -168,7 +168,7 @@ export function Products() {
             onClick={() => {
               window.location.href = '/productpage';
             }}
-            className="relative py-4 px-8 text-white rounded-lg text-lg font-medium overflow-hidden transition-all duration-200"
+            className="relative py-3 sm:py-4 px-6 sm:px-8 text-white rounded-lg text-base sm:text-lg font-medium overflow-hidden transition-all duration-200"
             style={{
               background: 'linear-gradient(110deg, #0a1a3f, #0d47a1)',
               boxShadow: '0 4px 15px rgba(10, 26, 63, 0.3)',

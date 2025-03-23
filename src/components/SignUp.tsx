@@ -64,7 +64,7 @@ export function SignUp({ onNavigate }: SignUpProps) {
       />
       <NavBar />
 
-      <div className="flex-1 flex min-h-screen pt-24">
+      <div className="flex-1 flex min-h-screen pt-24 pb-24 md:pb-0">
         <div className="flex-1 flex items-center justify-center p-8">
           <div className="w-full max-w-md space-y-8">
             <div>
