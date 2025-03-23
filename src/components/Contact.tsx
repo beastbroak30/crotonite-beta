@@ -3,15 +3,15 @@ import { Mail, Building, User, MessageSquare, DollarSign, Send, Banknote, Users,
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
-// Firebase configuration
+// Firebase configuration using environment variables
 const firebaseConfig = {
-apiKey: "AIzaSyBTizH8OVW-gQRZinI010zOl2qxu7LHgqs",
-  authDomain: "crotonite-form.firebaseapp.com",
-  projectId: "crotonite-form",
-  storageBucket: "crotonite-form.firebasestorage.app",
-  messagingSenderId: "914679188035",
-  appId: "1:914679188035:web:d026e859a8088c071e62f6",
-  measurementId: "G-X83N82DD2J"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
