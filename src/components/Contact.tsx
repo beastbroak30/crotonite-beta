@@ -3,15 +3,22 @@ import { Mail, Building, User, MessageSquare, DollarSign, Send, Banknote, Users,
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
-// Firebase configuration using environment variables
+// Validate environment variables
+const requiredEnvVars = [
+  'VITE_FIREBASE_PROJECT_ID',
+  'VITE_FIREBASE_APP_ID'
+];
+
+requiredEnvVars.forEach(varName => {
+  if (!import.meta.env[varName]) {
+    throw new Error(`Missing required environment variable: ${varName}`);
+  }
+});
+
+// Firebase configuration with minimal required fields
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
@@ -86,7 +93,7 @@ export function Contact() {
       // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(prev => ({ ...prev, success: false }));
-      }, 5000);
+      }, 10000);
       
     } catch (error: any) {
       console.error('Error submitting form:', error);

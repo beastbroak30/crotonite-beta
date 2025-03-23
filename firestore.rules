@@ -2,8 +2,35 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isRateLimited() {
+      let requestsPath = /databases/$(database)/documents/contact_submissions;
+      let recentRequests = getAfter(requestsPath)
+        .data.requests
+        .where(r => r.timestamp > request.time - duration.value(5, 'min'))
+        .size();
+      return recentRequests < 5;
+    }
+
+    match /contact_submissions/{submission} {
+      allow read: if false;
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'message', 'contribution_type', 'submitted_at'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string
+        && request.resource.data.email.matches('^[^@]+@[^@]+\\.[^@]+$')
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 10
+        && request.resource.data.message.size() <= 1000
+        && request.resource.data.contribution_type in ['financial', 'research', 'technical', 'product']
+        && request.resource.data.submitted_at is string
+        && isRateLimited();
+      allow update, delete: if false;
+    }
+    
     match /{document=**} {
       allow read, write: if false;
     }
   }
+}
 }
