@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Zap, Home, Box, Mail, LogIn, UserPlus,Boxes,BookOpen } from 'lucide-react';
+import { Zap, Home, Box, Mail, LogIn, UserPlus,Boxes,BookOpenText } from 'lucide-react';
 import { NavbarContext } from './NavbarProvider';
 
 interface NavBarProps {
