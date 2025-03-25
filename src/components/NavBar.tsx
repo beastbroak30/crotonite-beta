@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Zap, Home, Box, Mail, LogIn, UserPlus } from 'lucide-react';
+import { Zap, Home, Box, Mail, LogIn, UserPlus,Boxes,BookOpen } from 'lucide-react';
 import { NavbarContext } from './NavbarProvider';
 
 interface NavBarProps {
@@ -95,11 +95,11 @@ export function NavBar({ onNavigate }: NavBarProps) {
                 <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/' ? '#60a5fa' : '#d1d5db' }}>Home</span>
               </a>
               <a href="/crotonite-beta/about" className="flex flex-col items-center group">
-                <Box className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/about' ? '#60a5fa' : '#d1d5db' }} />
+                <BookOpen className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/about' ? '#60a5fa' : '#d1d5db' }} />
                 <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/about' ? '#60a5fa' : '#d1d5db' }}>About</span>
               </a>
               <a href="/crotonite-beta/productpage" className="flex flex-col items-center group">
-                <Box className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/productpage' ? '#60a5fa' : '#d1d5db' }} />
+                <Boxes className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/productpage' ? '#60a5fa' : '#d1d5db' }} />
                 <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/productpage' ? '#60a5fa' : '#d1d5db' }}>Products</span>
               </a>
               <a href="/crotonite-beta/contact" className="flex flex-col items-center group">
