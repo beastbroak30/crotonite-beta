@@ -91,8 +91,8 @@ export function NavBar({ onNavigate }: NavBarProps) {
           <div className="max-w-sm mx-auto px-4">
             <div className="flex justify-between items-center">
               <a href="/crotonite-beta/" className="flex flex-col items-center group">
-                <Home className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/' ? '#60a5fa' : '#d1d5db' }} />
-                <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/' ? '#60a5fa' : '#d1d5db' }}>Home</span>
+                <Home className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/' || window.location.pathname === '/' ? '#60a5fa' : '#d1d5db' }} />
+                <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/' || window.location.pathname === '/' ? '#60a5fa' : '#d1d5db' }}>Home</span>
               </a>
               <a href="/crotonite-beta/about" className="flex flex-col items-center group">
                 <BookOpenText className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/about' ? '#60a5fa' : '#d1d5db' }} />
