@@ -5,8 +5,7 @@ import { Layout } from './components/Layout';
 import { Hero } from './components/Hero';
 import { Benefits } from './components/Benefits';
 import { Products } from './components/Products';
-import { SignUp } from './components/SignUp';
-import { Login } from './components/login';
+
 import { CursorGradient } from './components/CursorGradient';
 import { LoadingScreen } from './components/LoadingScreen';
 import { About } from './components/About';
@@ -14,6 +13,7 @@ import { Contact } from './components/Contact';
 import { NotFound } from './components/NotFound';
 import ProductPage from './components/productpage';
 import { NavbarProvider } from './components/NavbarProvider';
+import { JoinUs } from './components/JoinUs';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,51 +37,7 @@ function App() {
     setIsLoading(false);
     setRedirectTo(null);
   };
-  if (currentPath === '/signup' || currentPath === '/crotonite-beta/signup') {
-    return (
-      <>
-        <Analytics />
-        <SpeedInsights />
-        {isLoading && (
-          <LoadingScreen 
-            isVisible={isLoading} 
-            onComplete={handleLoadingComplete}
-            duration={2000 + Math.random() * 3000}
-          />
-        )}
-        <CursorGradient 
-          colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
-          size={800}
-          opacity={0.15}
-          blur={120}
-        />
-        <SignUp onNavigate={handleNavigation} />
-      </>
-    );
-  }
 
-  if (currentPath === '/login' || currentPath === '/crotonite-beta/login') {
-    return (
-      <>
-        <Analytics />
-        <SpeedInsights />
-        {isLoading && (
-          <LoadingScreen 
-            isVisible={isLoading} 
-            onComplete={handleLoadingComplete}
-            duration={2000 + Math.random() * 3000}
-          />
-        )}
-        <CursorGradient 
-          colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
-          size={800}
-          opacity={0.15}
-          blur={120}
-        />
-        <Login onNavigate={handleNavigation} />
-      </>
-    );
-  }
 
   if (currentPath === '/about' || currentPath === '/crotonite-beta/about') {
     return (
@@ -117,6 +73,26 @@ function App() {
           />
           <Layout>
             <ProductPage />
+          </Layout>
+        </>
+      </NavbarProvider>
+    );
+  }
+
+  if (currentPath === '/join-us' || currentPath === '/crotonite-beta/join-us') {
+    return (
+      <NavbarProvider>
+        <>
+          <Analytics />
+          <SpeedInsights />
+          <CursorGradient 
+            colors={['#3b82f6', '#6366f1', '#8b5cf6']} 
+            size={800}
+            opacity={0.15}
+            blur={120}
+          />
+          <Layout>
+            <JoinUs />
           </Layout>
         </>
       </NavbarProvider>

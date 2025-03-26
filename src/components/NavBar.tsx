@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Zap, Home, Box, Mail, LogIn, UserPlus,Boxes,BookOpenText } from 'lucide-react';
+import { Zap, Home, Mail, Boxes, BookOpenText } from 'lucide-react';
 import { NavbarContext } from './NavbarProvider';
 
 interface NavBarProps {
@@ -14,22 +14,11 @@ export function NavBar({ onNavigate }: NavBarProps) {
   const navigation = [
     { name: 'About', href: '/crotonite-beta/about' },
     { name: 'Products', href: 'productpage' },
+    { name: 'Join Us', href: '/crotonite-beta/join-us' },
     { name: 'Contact', href: '/crotonite-beta/contact' },
   ];
 
-  const handleSignUpClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (onNavigate) {
-      e.preventDefault();
-      onNavigate('/crotonite-beta/signup');
-    }
-  };
 
-  const handleLoginClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (onNavigate) {
-      e.preventDefault();
-      onNavigate('/crotonite-beta/login');
-    }
-  };
 
   // Apply conditional styles based on visibility state
   const navbarStyles = isVisible
@@ -65,20 +54,7 @@ export function NavBar({ onNavigate }: NavBarProps) {
                     {item.name}
                   </a>
                 ))}
-                <a
-                  href="/crotonite-beta/login"
-                  onClick={handleLoginClick}
-                  className="bg-gray-800/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-700/80 transition-colors"
-                >
-                  Log In
-                </a>
-                <a
-                  href="/crotonite-beta/signup"
-                  onClick={handleSignUpClick}
-                  className="bg-blue-500/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600/80 transition-colors"
-                >
-                  Sign Up
-                </a>
+
               </div>
             </div>
           </div>
@@ -102,14 +78,17 @@ export function NavBar({ onNavigate }: NavBarProps) {
                 <Boxes className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/productpage' ? '#60a5fa' : '#d1d5db' }} />
                 <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/productpage' ? '#60a5fa' : '#d1d5db' }}>Products</span>
               </a>
+              <a href="/crotonite-beta/join-us" className="flex flex-col items-center group">
+                <svg className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/join-us' ? '#60a5fa' : '#d1d5db' }} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/join-us' ? '#60a5fa' : '#d1d5db' }}>Join Us</span>
+              </a>
               <a href="/crotonite-beta/contact" className="flex flex-col items-center group">
                 <Mail className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/contact' ? '#60a5fa' : '#d1d5db' }} />
                 <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/contact' ? '#60a5fa' : '#d1d5db' }}>Contact</span>
               </a>
-              <a href="/crotonite-beta/signup" onClick={handleSignUpClick} className="flex flex-col items-center group">
-                <UserPlus className="h-6 w-6 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/signup' ? '#60a5fa' : '#d1d5db' }} />
-                <span className="text-xs mt-1 transition-colors duration-300 group-hover:text-blue-400" style={{ color: window.location.pathname === '/crotonite-beta/signup' ? '#60a5fa' : '#d1d5db' }}>Sign Up</span>
-              </a>
+
             </div>
           </div>
         </nav>
