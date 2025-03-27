@@ -17,6 +17,7 @@
     "@supabase/supabase-js": "^2.49.1",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
+    "appwrite": "^17.0.1",
     "chart.js": "^4.4.8",
     "default-connector": "link:C:/Users/sasian/AppData/Local/pnpm/global/5/node_modules/dataconnect-generated/js/default-connector",
     "express": "^4.21.2",

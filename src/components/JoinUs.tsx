@@ -1,39 +1,37 @@
 import { useState } from 'react';
+import appwriteService from "../services/appwriteService";
 
 export const JoinUs = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [status, setStatus] = useState({ type: '', message: '' });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !name) {
       setStatus({ type: 'error', message: 'Please enter your name and email address' });
       return;
     }
     try {
-      // Here you would typically make an API call to your backend
-      setStatus({ type: 'success', message: 'Thank you for subscribing!' });
+      await appwriteService.createUser(name, email);
+      setStatus({ type: 'success', message: 'Thank you for joining!' });
       setEmail('');
       setName('');
     } catch (error) {
-      setStatus({ type: 'error', message: 'Something went wrong. Please try again.' });
+      console.error("Error:", error);
+      setStatus({ type: 'error', message: 'Email already exists or an error occurred.' });
     }
   };
 
   return (
-    <div className="min-h-screen text-white p-8 relative overflow-hidden" style={{ backgroundImage: "url('/image.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-100"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a0b2e]/80 via-[#2b0b3a]/80 to-[#4b0082]/80"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)] backdrop-blur-[100px]"></div>
-      
+    <div className="min-h-screen text-white p-8 relative overflow-hidden bg-[url('/image.png')] bg-cover bg-center bg-no-repeat">
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[8px]"></div>
       <div className="relative max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 mb-8 animate-fade-in">
           Join Our Development Community
         </h1>
         <p className="mt-4 text-xl text-gray-300 max-w-xl mx-auto mb-8 animate-fade-in-up">
-          Be part of our innovative project! Collaborate with fellow developers, share insights, and help shape the future of our technology.
+         
         </p>
         
         <form onSubmit={handleSubmit} className="mt-8 max-w-md mx-auto space-y-4 animate-fade-in-up">
@@ -63,7 +61,7 @@ export const JoinUs = () => {
           </div>
           <button
             type="submit"
-            className="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all hover:shadow-[0_0_15px_rgba(59,130,246,0.3)]"
+            className="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transform hover:scale-[1.02]"
           >
             Join Project
           </button>
