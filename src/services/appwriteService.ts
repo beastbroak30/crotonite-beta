@@ -1,16 +1,13 @@
-import { Client, Databases, AppwriteException, Models } from "appwrite";
+// Constants
+const APPWRITE_URL = "https://cloud.appwrite.io/v1";
+const PROJECT_ID = "67e51f81000e2ef4a7e9";
+const DATABASE_ID = "67e5236700162bfc2605";
+const COLLECTION_ID = "67e52380003c55d8413c";
+const API_KEY = "standard_c4d5fd0f29bf43b6968b5bd31cf0bee52522c036d0fc7861a046880356e940473268151fc373cbc6c5a367748bed184fc666cdda84cefae7fd6e125d1ee03b7b14ddb2b05242e89d0d9c4aa369f24294258f9e2afb363a1fd706fa19c1a0e877414ca6fa26088ddd19e046cf930e05251f603f774d1c8bd7bb9982857de28211"
 
-const client = new Client();
-client
-  .setEndpoint("https://cloud.appwrite.io/v1") // Replace with your Appwrite URL
-  .setProject("67e51f81000e2ef4a7e9"); // Replace with your Project ID
-
-const databases = new Databases(client);
-const databaseID = "67e5236700162bfc2605"; // Replace with your Database ID
-const collectionID = "67e52380003c55d8413c"; // Replace with your Collection ID
-
-// Define User type extending Appwrite Document
-interface User extends Models.Document {
+// TypeScript User Interface
+interface User {
+  $id?: string;
   name: string;
   email: string;
 }
@@ -30,8 +27,17 @@ class DatabaseError extends Error {
   }
 }
 
-const MAX_RETRIES = 3;
-const RETRY_DELAY = 1000; // 1 second
+// Utility functions
+const MAX_RETRIES = 5;
+const BASE_DELAY = 1000; // 1 second
+const MAX_DELAY = 10000; // 10 seconds
+
+const calculateDelay = (attempt: number): number => {
+  const exponentialDelay = BASE_DELAY * Math.pow(2, attempt);
+  return Math.min(exponentialDelay, MAX_DELAY);
+};
+
+const delay = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
 
 const validateUserInput = (name: string, email: string): void => {
   if (!name || name.trim().length === 0) {
@@ -42,7 +48,35 @@ const validateUserInput = (name: string, email: string): void => {
   }
 };
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const handleApiError = async (error: any, attempt: number): Promise<never> => {
+  const status = error.status || 500;
+  switch (status) {
+    case 409:
+      throw new ValidationError('Email already exists');
+    case 401:
+    case 403:
+      throw new DatabaseError('Authentication failed');
+    case 404:
+      throw new DatabaseError('Database or collection not found');
+    case 429:
+      if (attempt < MAX_RETRIES) {
+        const retryDelay = calculateDelay(attempt);
+        await delay(retryDelay);
+        return Promise.reject(error); // Continue retry loop
+      }
+      throw new DatabaseError('Rate limit exceeded. Please try again later');
+    case 500:
+    case 503:
+      if (attempt < MAX_RETRIES) {
+        const retryDelay = calculateDelay(attempt);
+        await delay(retryDelay);
+        return Promise.reject(error); // Continue retry loop
+      }
+      throw new DatabaseError('Service is temporarily unavailable. Please try again later');
+    default:
+      throw new DatabaseError(`API Error: ${error.message || 'Unknown error'}`);
+  }
+};
 
 const appwriteService = {
   async createUser(name: string, email: string): Promise<User> {
@@ -52,25 +86,36 @@ const appwriteService = {
       let lastError: Error | null = null;
       for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
         try {
-          const response = await databases.createDocument<User>(
-            databaseID,
-            collectionID,
-            "unique()",
-            { name: name.trim(), email: email.trim() }
+          const response = await fetch(
+            `${APPWRITE_URL}/databases/${DATABASE_ID}/collections/${COLLECTION_ID}/documents`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-Appwrite-Project': PROJECT_ID
+              },
+              body: JSON.stringify({
+                documentId: 'unique()',
+                data: { name: name.trim(), email: email.trim() }
+              })
+            }
           );
-          return response;
+
+          if (!response.ok) {
+            const error = await response.json();
+            await handleApiError({ ...error, status: response.status }, attempt);
+          }
+
+          const data = await response.json();
+          return data;
         } catch (error) {
           lastError = error as Error;
-          if (error instanceof AppwriteException && error.code === 409) {
-            throw new ValidationError('Email already exists');
-          }
-          if (attempt < MAX_RETRIES) {
-            await delay(RETRY_DELAY * attempt);
-            continue;
+          if (attempt === MAX_RETRIES) {
+            throw error;
           }
         }
       }
-      throw new DatabaseError('Failed to create user after multiple attempts', lastError || undefined);
+      throw new DatabaseError('Service is temporarily unavailable', lastError || undefined);
     } catch (error) {
       if (error instanceof ValidationError || error instanceof DatabaseError) {
         throw error;
@@ -84,22 +129,37 @@ const appwriteService = {
       let lastError: Error | null = null;
       for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
         try {
-          const response = await databases.listDocuments<User>(databaseID, collectionID);
-          return response.documents;
+          const response = await fetch(
+            `${APPWRITE_URL}/databases/${DATABASE_ID}/collections/${COLLECTION_ID}/documents`,
+            {
+              method: 'GET',
+              headers: {
+                'X-Appwrite-Project': PROJECT_ID,
+                "X-Appwrite-Key": API_KEY,
+              }
+            }
+          );
+
+          if (!response.ok) {
+            const error = await response.json();
+            await handleApiError({ ...error, status: response.status }, attempt);
+          }
+
+          const data = await response.json();
+          return data.documents;
         } catch (error) {
           lastError = error as Error;
-          if (attempt < MAX_RETRIES) {
-            await delay(RETRY_DELAY * attempt);
-            continue;
+          if (attempt === MAX_RETRIES) {
+            throw error;
           }
         }
       }
-      throw new DatabaseError('Failed to fetch users after multiple attempts', lastError || undefined);
+      throw new DatabaseError('Service is temporarily unavailable', lastError || undefined);
     } catch (error) {
-      if (error instanceof DatabaseError) {
+      if (error instanceof ValidationError || error instanceof DatabaseError) {
         throw error;
       }
-      throw new DatabaseError('Unexpected error while fetching users', error as Error);
+      throw new DatabaseError('Unexpected error while retrieving users', error as Error);
     }
   }
 };

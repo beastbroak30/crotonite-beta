@@ -5,6 +5,7 @@ export const JoinUs = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [status, setStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,6 +13,8 @@ export const JoinUs = () => {
       setStatus({ type: 'error', message: 'Please enter your name and email address' });
       return;
     }
+    setIsSubmitting(true);
+    setStatus({ type: '', message: '' });
     try {
       await appwriteService.createUser(name, email);
       setStatus({ type: 'success', message: 'Thank you for joining!' });
@@ -19,7 +22,19 @@ export const JoinUs = () => {
       setName('');
     } catch (error) {
       console.error("Error:", error);
-      setStatus({ type: 'error', message: 'Email already exists or an error occurred.' });
+      if (error instanceof Error) {
+        if (error.name === 'ValidationError') {
+          setStatus({ type: 'error', message: error.message });
+        } else if (error.name === 'DatabaseError') {
+          setStatus({ type: 'error', message: error.message });
+        } else {
+          setStatus({ type: 'error', message: 'An unexpected error occurred. Please try again.' });
+        }
+      } else {
+        setStatus({ type: 'error', message: 'An unexpected error occurred. Please try again.' });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -61,9 +76,10 @@ export const JoinUs = () => {
           </div>
           <button
             type="submit"
-            className="w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transform hover:scale-[1.02]"
+            disabled={isSubmitting}
+            className={`w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:shadow-[0_0_15px_rgba(59,130,246,0.5)] transform hover:scale-[1.02] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
-            Join Project
+            {isSubmitting ? 'Joining...' : 'Join Project'}
           </button>
         </form>
 
