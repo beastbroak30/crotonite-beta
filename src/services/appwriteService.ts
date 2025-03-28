@@ -1,9 +1,14 @@
 // Constants
-const APPWRITE_URL = "https://cloud.appwrite.io/v1";
-const PROJECT_ID = "67e51f81000e2ef4a7e9";
-const DATABASE_ID = "67e5236700162bfc2605";
-const COLLECTION_ID = "67e52380003c55d8413c";
-const API_KEY = "standard_c4d5fd0f29bf43b6968b5bd31cf0bee52522c036d0fc7861a046880356e940473268151fc373cbc6c5a367748bed184fc666cdda84cefae7fd6e125d1ee03b7b14ddb2b05242e89d0d9c4aa369f24294258f9e2afb363a1fd706fa19c1a0e877414ca6fa26088ddd19e046cf930e05251f603f774d1c8bd7bb9982857de28211"
+const APPWRITE_URL = import.meta.env.VITE_APPWRITE_URL;
+const PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID;
+const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID;
+const COLLECTION_ID = import.meta.env.VITE_APPWRITE_COLLECTION_ID;
+const API_KEY = import.meta.env.VITE_APPWRITE_API_KEY;
+
+// Environment variable validation
+if (!APPWRITE_URL || !PROJECT_ID || !DATABASE_ID || !COLLECTION_ID || !API_KEY) {
+  throw new Error('Missing required Appwrite environment variables');
+}
 
 // TypeScript User Interface
 interface User {
