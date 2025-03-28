@@ -42,11 +42,15 @@ export const JoinUs = () => {
     <div className="min-h-screen text-white p-8 relative overflow-hidden bg-[url('/image.png')] bg-cover bg-center bg-no-repeat">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-[8px]"></div>
       <div className="relative max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 mb-8 animate-fade-in">
-          Join Our Development Community
+        <div className="flex flex-col items-center mb-8 animate-fade-in">
+          <img src="/crotonite-logo.svg" alt="Crotonite Logo" className="w-24 h-24 mb-4" />
+          <h2 className="text-4xl font-bold text-white">Crotonite</h2>
+        </div>
+        <h1 className="p-4 sm:p-10 lg:p-8 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-normal bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 mb-8 animate-fade-in">
+          Join the Vanguard of Scientific Progress
         </h1>
         <p className="mt-4 text-xl text-gray-300 max-w-xl mx-auto mb-8 animate-fade-in-up">
-         
+        Help Build an Particle Accelerator for Every human and creature!
         </p>
         
         <form onSubmit={handleSubmit} className="mt-8 max-w-md mx-auto space-y-4 animate-fade-in-up">
