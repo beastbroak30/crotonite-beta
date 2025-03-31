@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Helmet } from 'react-helmet';
 import { Layout } from './components/Layout';
 import { Hero } from './components/Hero';
 import { Benefits } from './components/Benefits';
@@ -43,6 +44,9 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Helmet>
+            <meta name="google-site-verification" content="eA7wtwkQkzo5jFpPInLhSk9e8jLP8cmKbwId1A_7Ot0" />
+          </Helmet>
           <Analytics />
           <SpeedInsights />
           <CursorGradient 
@@ -63,6 +67,9 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Helmet>
+            <meta name="google-site-verification" content="eA7wtwkQkzo5jFpPInLhSk9e8jLP8cmKbwId1A_7Ot0" />
+          </Helmet>
           <Analytics />
           <SpeedInsights />
           <CursorGradient 
@@ -83,6 +90,9 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Helmet>
+            <meta name="google-site-verification" content="eA7wtwkQkzo5jFpPInLhSk9e8jLP8cmKbwId1A_7Ot0" />
+          </Helmet>
           <Analytics />
           <SpeedInsights />
           <CursorGradient 
@@ -103,6 +113,9 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Helmet>
+            <meta name="google-site-verification" content="eA7wtwkQkzo5jFpPInLhSk9e8jLP8cmKbwId1A_7Ot0" />
+          </Helmet>
           <Analytics />
           <SpeedInsights />
           <CursorGradient 
@@ -124,6 +137,9 @@ function App() {
     return (
       <NavbarProvider>
         <>
+          <Helmet>
+            <meta name="google-site-verification" content="eA7wtwkQkzo5jFpPInLhSk9e8jLP8cmKbwId1A_7Ot0" />
+          </Helmet>
           <Analytics />
           <SpeedInsights />
           {isLoading && (
